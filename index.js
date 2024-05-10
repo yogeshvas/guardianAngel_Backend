@@ -9,11 +9,9 @@ app.use(cors());
 app.use(bodyParser.json());
 dotenv.config();
 // Replace 'YOUR_ACCOUNT_SID' and 'YOUR_AUTH_TOKEN' with your actual Twilio credentials
-const accountSid = "AC3870949ae00a777d88effaf40f6cb747";
-const authToken = "efdaa3d3e9834988381bf6e9c762bf79";
 
 // Initialize Twilio client
-const client = twilio(accountSid, authToken);
+const client = twilio(process.env.accountSid, process.env.authToken);
 
 // Example route to send an SMS message
 app.post("/sms", async (req, res) => {
@@ -30,7 +28,7 @@ app.post("/sms", async (req, res) => {
     const message = await client.messages.create({
       body: body,
       to: to,
-      from: "+15207779980", // Your Twilio phone number
+      from: "+15203694148", // Your Twilio phone number
     });
 
     res.json({

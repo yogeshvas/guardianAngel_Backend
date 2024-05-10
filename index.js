@@ -3,11 +3,11 @@ const twilio = require("twilio");
 const bodyParser = require("body-parser"); // Import body-parser middleware
 const app = express();
 const cors = require("cors");
-
+const dotenv = require("dotenv");
 // Middleware to parse JSON bodies
 app.use(cors());
 app.use(bodyParser.json());
-
+dotenv.config();
 // Replace 'YOUR_ACCOUNT_SID' and 'YOUR_AUTH_TOKEN' with your actual Twilio credentials
 const accountSid = "AC3870949ae00a777d88effaf40f6cb747";
 const authToken = "efdaa3d3e9834988381bf6e9c762bf79";

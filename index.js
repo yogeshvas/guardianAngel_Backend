@@ -42,6 +42,33 @@ app.post("/sms", async (req, res) => {
   }
 });
 
+app.post("/call", async (req, res) => {
+  try {
+    const { to } = req.body;
+
+    if (!to || !message) {
+      return res
+        .status(400)
+        .json({ error: "Missing 'to' or 'message' parameter" });
+    }
+
+    const call = await client.calls.create({
+      twiml: `<Response><Say>Hello How are you.</Say></Response>`,
+      to: to,
+      from: "+18144812203",
+    });
+
+    res.json({
+      success: true,
+      message: "Call initiated successfully",
+      callId: call.sid,
+    });
+  } catch (error) {
+    console.error("Error initiating call:", error);
+    res.status(500).json({ error: "Failed to initiate call" });
+  }
+});
+
 // Start the Express.js server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

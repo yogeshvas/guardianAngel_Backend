@@ -46,11 +46,7 @@ app.post("/call", async (req, res) => {
   try {
     const { to } = req.body;
 
-    if (!to || !message) {
-      return res
-        .status(400)
-        .json({ error: "Missing 'to' or 'message' parameter" });
-    }
+   
 
     const call = await client.calls.create({
       twiml: `<Response><Say>Hello How are you.</Say></Response>`,
